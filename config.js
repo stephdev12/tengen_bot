@@ -34,7 +34,7 @@ const config = {
     antispamThreshold: parseInt(process.env.ANTISPAM_THRESHOLD) || 5,
 
 
-    updateZipUrl: process.env.UPDATE_ZIP_URL || "https://github.com/mruniquehacker/Knightbot-MD/archive/refs/heads/main.zip",
+    updateZipUrl: process.env.UPDATE_ZIP_URL || "https://github.com/stephdev12/tengen_bot/archive/refs/heads/main.zip",
 };
 
 export default config;
