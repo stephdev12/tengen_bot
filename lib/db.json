@@ -1,0 +1,17 @@
+{
+  "settings": {
+    "prefix": "!",
+    "bot_name": "TechVerse Bot",
+    "bot_mode": "public",
+    "language": "en",
+    "antidelete_enabled": true,
+    "autoreact_enabled": true,
+    "menu_image": "https://i.postimg.cc/gjZbjhfx/default-menu.jpg",
+    "welcome_image": "https://i.postimg.cc/6Qq7gWb9/default-welcome.jpg"
+  },
+  "groups": {},
+  "sudoUsers": [],
+  "premiumUsers": [],
+  "userMedia": {},
+  "userWarnings": {}
+}
