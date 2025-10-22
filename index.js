@@ -488,12 +488,11 @@ async function handleCommand(msg, body, userSettings) {
   try {
     const command = commands.get(commandName);
     if (!command) {
-      await safeSend(sock, jid, { 
-        text: `❌ Unknown command: ${commandName}\nUse ${userSettings.prefix}help` 
-      });
+     
       return;
     }
 
+  
     // Vérification des permissions
     const permission = await checkPermissions({
       sock: sock, 
@@ -680,29 +679,17 @@ async function startBot(usePairing = true) {
   }
 }
 
-// ==================== DÉMARRAGE ====================
-
-// Serveur HTTP pour keep-alive
-http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('🤖 Bot WhatsApp en fonctionnement!');
-}).listen(config.port, () => {
-  console.log(chalk.blue(`🌐 Serveur démarré sur le port ${config.port}`));
-});
-
-// Gestion propre de la fermeture
-process.on('SIGINT', async () => {
-  console.log(chalk.yellow('\n🛑 Arrêt du bot...'));
-  botTracker.stop();
-  process.exit(0);
-});
-
-process.on('SIGTERM', async () => {
-  console.log(chalk.yellow('\n🛑 Arrêt du bot...'));
-  botTracker.stop();
-  process.exit(0);
-});
-
+async function checkDashboardCommands() {
+    // Cette fonction vérifiera Firebase toutes les 5 minutes
+    setInterval(async () => {
+        try {
+            // À implémenter avec Firebase SDK côté bot
+            console.log('🔍 Checking dashboard commands...');
+        } catch (error) {
+            // Silent fail
+        }
+    }, 5 * 60 * 1000);
+}
 
 async function listenForDashboardCommands() {
     // Cette fonction sera implémentée plus tard pour recevoir
@@ -732,6 +719,33 @@ async function listenForDashboardCommands() {
         }
     }, 5 * 60 * 1000); // Vérifier toutes les 5 minutes
 }
+
+// ==================== DÉMARRAGE ====================
+
+// Serveur HTTP pour keep-alive
+http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('🤖 Bot WhatsApp en fonctionnement!');
+}).listen(config.port, () => {
+  console.log(chalk.blue(`🌐 Serveur démarré sur le port ${config.port}`));
+});
+
+// Gestion propre de la fermeture
+process.on('SIGINT', async () => {
+  console.log(chalk.yellow('\n🛑 Arrêt du bot...'));
+  botTracker.stop();
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  console.log(chalk.yellow('\n🛑 Arrêt du bot...'));
+  botTracker.stop();
+  process.exit(0);
+});
+
+
+
 // Démarrer le bot
 startBot(true);
 listenForDashboardCommands();
+checkDashboardCommands();
