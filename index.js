@@ -538,6 +538,8 @@ async function handleCommand(msg, body, userSettings) {
       getUserWarnings: (userId) => getUserWarnings(jid, userId),
       resetUserWarnings: (userId) => resetUserWarnings(jid, userId)
     });
+
+    botTracker.incrementCommands();
     
   } catch (error) {
     console.error('❌ Command error:', error.message);
@@ -551,7 +553,7 @@ async function handleCommand(msg, body, userSettings) {
     }
   }
 
-  botTracker.incrementCommands();
+  
 }
 
 // ==================== CONNEXION WHATSAPP ====================
